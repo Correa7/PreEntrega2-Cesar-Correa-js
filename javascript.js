@@ -5,10 +5,10 @@
 const products = [ 
     {codigo: 1, nombre: "Remera" ,categoria: "ROPA", precio: 2499.99 ,stock: 10 }, 
     {codigo: 2, nombre: "Pelota Futbol",categoria: "DEPORTE", precio: 4499.99 ,stock: 5 },
-{codigo: 3, nombre: "Pelota Tenis" ,categoria: "DEPORTE", precio: 1200 ,stock:4 },
-{codigo: 4, nombre: "Zapatilla" ,categoria: "CALZADO", precio: 25499.99 ,stock:10 },
-{codigo: 5, nombre: "Short" ,categoria: "ROPA", precio: 2999.99 ,stock:5 },
-{codigo: 6, nombre: "Raqueta Paddle" ,categoria: "Deporte", precio: 10299.99 ,stock: 3 }
+    {codigo: 3, nombre: "Pelota Tenis" ,categoria: "DEPORTE", precio: 1200 ,stock:4 },
+    {codigo: 4, nombre: "Zapatilla" ,categoria: "CALZADO", precio: 25499.99 ,stock:10 },
+    {codigo: 5, nombre: "Short" ,categoria: "ROPA", precio: 2999.99 ,stock:5 },
+    {codigo: 6, nombre: "Raqueta Paddle" ,categoria: "Deporte", precio: 10299.99 ,stock: 3 }
 ]
 
 // /*                              Filtrando el array              */
@@ -20,25 +20,25 @@ let opcion = parseInt (prompt("Ingresa una de las siguientes opciones: \n 1 : pa
 
 if (opcion == 1){
 
-let cat = prompt("Ingresa la categoria del producto: Ropa, Deporte, Calzado")
+    let cat = prompt("Ingresa la categoria del producto: Ropa, Deporte, Calzado")
 
-filtro = products.filter (product => product.categoria.includes (cat.toUpperCase()))  
-console.log (filtro)
+    filtro = products.filter (product => product.categoria.includes (cat.toUpperCase()))  
+    console.log (filtro)
 
-for (const el of filtro) {
-    salida = salida + el.nombre + ",  $" + el.precio + " con stock de: "+ el.stock +" unidades. \n"
-}
+    for (const el of filtro) {
+        salida = salida + el.nombre + ",  $" + el.precio + " con stock de: "+ el.stock +" unidades. \n"
+    }
 
-alert (salida)
+    alert (salida)
 
 }
 else if (opcion == 2) {
 
-for (const el of products) {
-    salida = salida + "Codigo: " + el.codigo + ", " + el.nombre + ", Precio: $" + el.precio + " \n"
-}
+    for (const el of products) {
+        salida = salida + "Codigo: " + el.codigo + ", " + el.nombre + ", Precio: $" + el.precio + " \n"
+    }
 
-alert (salida)
+    alert (salida)
 
 }
 
@@ -53,82 +53,137 @@ let comprar =  parseInt (prompt("Ingresa una de las siguientes opciones: \n 1 : 
 
 if (comprar == 1) {
 
-let prod = parseInt (prompt ("Ingresa el codigo del producto a añadir, o ingresa 0 para finalizar.\n  Codigo: 1, Remera.\n  Codigo: 2, Pelota Futbol.\n  Codigo: 3, Pelota Tenis. \n  Codigo: 4, Zapatillas.\n  Codigo: 5, Short.\n  Codigo: 6, Raqueta Paddle"))
+    let prod = parseInt (prompt ("Ingresa el codigo del producto a añadir, o ingresa 0 para finalizar.\n  Codigo: 1, Remera.\n  Codigo: 2, Pelota Futbol.\n  Codigo: 3, Pelota Tenis. \n  Codigo: 4, Zapatillas.\n  Codigo: 5, Short.\n  Codigo: 6, Raqueta Paddle"))
 
 
-    while (prod != 0){
+        while (prod != 0){
 
-        if(products.find ((el) => el.codigo == prod)){
+            if(products.find ((el) => el.codigo == prod)){
+    
+                carrito.push(products.find ((el) => el.codigo == prod))
 
-            carrito.push(products.find ((el) => el.codigo == prod))
+                prod = parseInt (prompt ("Ingresa el codigo del producto a añadir, o ingresa 0 para finalizar.\n  Codigo: 1, Remera.\n  Codigo: 2, Pelota Futbol.\n  Codigo: 3, Pelota Tenis. \n  Codigo: 4, Zapatillas.\n  Codigo: 5, Short.\n  Codigo: 6, Raqueta Paddle"))
+            }
+            else {
+                prod = parseInt (prompt ("Ingresa el codigo del producto a añadir, o ingresa 0 para finalizar.\n  Codigo: 1, Remera.\n  Codigo: 2, Pelota Futbol.\n  Codigo: 3, Pelota Tenis. \n  Codigo: 4, Zapatillas.\n  Codigo: 5, Short.\n  Codigo: 6, Raqueta Paddle"))
 
-            prod = parseInt (prompt ("Ingresa el codigo del producto a añadir, o ingresa 0 para finalizar.\n  Codigo: 1, Remera.\n  Codigo: 2, Pelota Futbol.\n  Codigo: 3, Pelota Tenis. \n  Codigo: 4, Zapatillas.\n  Codigo: 5, Short.\n  Codigo: 6, Raqueta Paddle"))
+            }
+
+
         }
-        else {
-            prod = parseInt (prompt ("Ingresa el codigo del producto a añadir, o ingresa 0 para finalizar.\n  Codigo: 1, Remera.\n  Codigo: 2, Pelota Futbol.\n  Codigo: 3, Pelota Tenis. \n  Codigo: 4, Zapatillas.\n  Codigo: 5, Short.\n  Codigo: 6, Raqueta Paddle"))
-
-        }
-
-
-    }
 }
 else {
-alert( "Gracias por visitar nuestra tienda, esperamos su regreso")
+    alert( "Gracias por visitar nuestra tienda, esperamos su regreso")
 }
 
-// /*                Ticket / Total                 */
+/*                Ticket / Total                 */
+
 let total = 0 
+let exit = ""
 if (carrito.length != 0) {
 
-let ticket = parseInt (prompt("Ingresa 1 : para ver el ticket de tu compra, \n Ingresa 0 : para finalizar"))
 
-let exit = ""
+    for (let el of carrito) {
 
-    if (ticket == 1){
-
-        // let total = 0 
-
-            for (let el of carrito) {
-
-                total = total + el.precio
-            }
-            for (let el of carrito) {
-                exit = exit + el.nombre + ",  $" + el.precio + "\n"
-            }
-
-    alert (exit + "\n Total: $ " + total.toFixed(2) + "\n \n Gracias por su compra, vuelvas pronto" )
+        total = total + el.precio
     }
+    for (let el of carrito) {
+        exit = exit + el.nombre + ",  $" + el.precio + "\n"
+    }
+
+    alert (exit + "\n Total: $ " + total.toFixed(2) + "\n" )
+        
 }
 
-/*        Funcion de descuento por superar compra    */
+/*               funciones de pago yo descuento*/
 
 
 let desc = 0
+let recargo = 0
 
 function descuento (a) {
-if (a >= 65000) {
-    desc = a - (a * 0.2) 
-    alert ("Como tu compra supero los $ 65000, te hacemos un descuento del 20 %. \n Tu total a pagar es: $" + desc.toFixed(2))
+    if (a >= 65000) {
+        desc = a - (a * 0.2) 
+        alert ("Como tu compra supero los $ 65000, te hacemos un descuento del 20 %. \n Tu total a pagar es: $" + desc.toFixed(2))
+    }
+    else {
+        alert ("Con tu proxima compra tienes un descuento del 10%")
+    }
 }
-else {
-    alert ("Con tu proxima compra tienes un descuento del 10%")
+
+function pago (a , c) {
+    
+    if (c == 12){
+        recargo = a + (a * 0.2)
+        cuotas = recargo.toFixed(2) / 12
+        alert ("El recargo por 12 cuotas de del 20%.\n Tu compra se realiza en 12 pagos de: $" + cuotas.toFixed(2) + "\n El total a pagar es de: $" + recargo.toFixed(2))
+    } 
+    else if (c == 9){
+        recargo = a + (a * 0.15)
+        cuotas = recargo.toFixed(2) / 9
+        alert ("El recargo por 9 cuotas de del 15%.\n Tu compra se realiza en 9 pagos de: $" + cuotas.toFixed(2) + "\n El total a pagar es de: $" + recargo.toFixed(2))
+    }
+    else if (c == 6){
+        recargo = a + (a * 0.1)
+        cuotas = recargo.toFixed(2) / 6
+        alert ("El recargo por 6 cuotas de del 10%.\n Tu compra se realiza en 6 pagos de: $" + cuotas.toFixed(2) + "\n El total a pagar es de: $" + recargo.toFixed(2))
+    }
+    else if (c == 3) {
+        recargo = a + (a * 0.05)
+        cuotas = recargo.toFixed(2) / 3
+        alert ("El recargo por 3 cuotas de del 5%.\n Tu compra se realiza en 3 pagos de: $" + cuotas.toFixed(2) + "\n El total a pagar es de: $" + recargo.toFixed(2))
+        
+    }
 }
+
+
+if (carrito.length != 0) {
+        let pagar = parseInt (prompt("Ingrese la opcion de pago: \n 1. Pago en efectivo. \n 2. Pago en cuotas."))
+
+
+        if (pagar == 1){
+
+            descuento(total)
+        }
+        else if (pagar == 2) {
+
+            let c = parseInt (prompt("Ingresa la cantidad de cuotas 3, 6, 9 o 12 cuotas "))
+
+                if (c == 3 || c == 6 || c == 9 || c == 12){
+
+                    pago (total, c)
+                
+                } 
+                else {
+
+                    while (c != 3 || c != 6 || c != 9 || c != 12) {
+            
+                        c = parseInt (prompt("Ingresa la cantidad de cuotas 3, 6, 9 o 12 cuotas "))
+            
+                        if (c == 3 || c == 6 || c == 9 || c == 12){
+
+                            pago (total, c)
+                        
+                            break
+                        }
+            
+                    }
+                }
+            
+
+        }
 }
 
-descuento(total)
 
 
+// console.log ("###################################")
 
+// console.log(carrito)
 
-
-console.log ("###################################")
-
-console.log(carrito)
-
-console.log ("###################################")
-                    
-                    
-                    
+// console.log ("###################################")
+                        
+                        
+                        
 /* Creacion Clase productos*/
 
 /* Esto es mas a manera de muestra de que se como crearlo, pero seria muuuy largo hacer todas las comprobaciones ecesarias para que un usuario no ingrese malos datos, tambien es tedioso crear un array que contenga varios objetos con tantos parametros...*/
@@ -144,16 +199,16 @@ console.log ("###################################")
 //         this.stock = parseInt(stock)
 
 //     }
-// descripcion () {
+    // descripcion () {
 
-//     if (this.stock > 0 ){
-//         alert ("Producto: " + this.nombre + " tenemos un stock de " + this.stock + " unidades")
+    //     if (this.stock > 0 ){
+    //         alert ("Producto: " + this.nombre + " tenemos un stock de " + this.stock + " unidades")
 
-//     }
-//     else {
-//         alert ("Lo sentimos en este momento no tenemos stock del producto: " + this.nombre)
-//     } 
-// }
+    //     }
+    //     else {
+    //         alert ("Lo sentimos en este momento no tenemos stock del producto: " + this.nombre)
+    //     } 
+    // }
 
 // }
 
