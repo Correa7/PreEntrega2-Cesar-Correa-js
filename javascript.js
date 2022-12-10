@@ -11,7 +11,7 @@ const products = [
     {codigo: 6, nombre: "Raqueta Paddle" ,categoria: "Deporte", precio: 10299.99 ,stock: 3 }
 ]
 
-// /*                              Filtrando el array              */
+/*                              Filtrando el array              */
 
 let filtro = []
 let salida = ""
@@ -21,15 +21,45 @@ let opcion = parseInt (prompt("Ingresa una de las siguientes opciones: \n 1 : pa
 if (opcion == 1){
 
     let cat = prompt("Ingresa la categoria del producto: Ropa, Deporte, Calzado")
+    
+    if (cat.toUpperCase() == "ROPA" || cat.toUpperCase() == "DEPORTE" || cat.toUpperCase() == "CALZADO" ) {
 
-    filtro = products.filter (product => product.categoria.includes (cat.toUpperCase()))  
-    console.log (filtro)
+        filtro = products.filter (product => product.categoria.includes (cat.toUpperCase()))  
+        console.log (filtro)
+    
+        for (const el of filtro) {
 
-    for (const el of filtro) {
-        salida = salida + el.nombre + ",  $" + el.precio + " con stock de: "+ el.stock +" unidades. \n"
+            salida = salida + el.nombre + ",  $" + el.precio + " con stock de: "+ el.stock +" unidades. \n"
+            
+        }
+    
+        alert (salida)
+    
     }
+    else {
 
-    alert (salida)
+
+        while (cat.toUpperCase() != "ROPA" || cat.toUpperCase() != "DEPORTE" || cat.toUpperCase() != "CALZADO" ){
+            
+            cat = prompt("La categoria ingresada no existe! \n Ingresa la categoria del producto: Ropa, Deporte, Calzado")
+    
+            if (cat.toUpperCase() == "ROPA" || cat.toUpperCase() == "DEPORTE" || cat.toUpperCase() == "CALZADO" ) {
+    
+                filtro = products.filter (product => product.categoria.includes (cat.toUpperCase()))  
+                console.log (filtro)
+            
+                for (const el of filtro) {
+                    salida = salida + el.nombre + ",  $" + el.precio + " con stock de: "+ el.stock +" unidades. \n"
+                   
+                }
+            
+                alert (salida)
+                break
+            }
+        }
+    } 
+
+
 
 }
 else if (opcion == 2) {
@@ -44,7 +74,7 @@ else if (opcion == 2) {
 
 
 
-// /*                 Comprar / Carrito                  */
+/*                 Comprar / Carrito                  */
 
 
 
@@ -76,7 +106,9 @@ else {
     alert( "Gracias por visitar nuestra tienda, esperamos su regreso")
 }
 
+
 /*                Ticket / Total                 */
+
 
 let total = 0 
 let exit = ""
@@ -95,7 +127,10 @@ if (carrito.length != 0) {
         
 }
 
-/*               funciones de pago yo descuento*/
+
+
+/*               funciones de pago yo descuento             */
+
 
 
 let desc = 0
@@ -138,8 +173,8 @@ function pago (a , c) {
 
 
 if (carrito.length != 0) {
-        let pagar = parseInt (prompt("Ingrese la opcion de pago: \n 1. Pago en efectivo. \n 2. Pago en cuotas."))
 
+        let pagar = parseInt (prompt("Ingrese la opcion de pago: \n 1. Pago en efectivo. \n 2. Pago en cuotas."))
 
         if (pagar == 1){
 
@@ -176,11 +211,11 @@ if (carrito.length != 0) {
 
 
 
-// console.log ("###################################")
+console.log ("###################################")
 
-// console.log(carrito)
+console.log(carrito)
 
-// console.log ("###################################")
+console.log ("###################################")
                         
                         
                         
